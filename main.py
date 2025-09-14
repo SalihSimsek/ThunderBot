@@ -17,7 +17,7 @@ keep_alive()  # önce çalıştır
 
 
 load_dotenv()
-TOKEN = os.getenv("TOKEN")
+TOKEN = os.getenv("DISCORD_TOKEN")
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_FILE = os.path.join(BASE_DIR, "ayarlar.json")
 AUTO_FILE = os.path.join(BASE_DIR, "otoyanit.json")
@@ -1441,3 +1441,4 @@ if not TOKEN:
     print("HATA: DISCORD_TOKEN ortam değişkeni yok.")
 else:
     bot.run(TOKEN)
+
