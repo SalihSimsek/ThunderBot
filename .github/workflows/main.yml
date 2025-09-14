@@ -1,25 +1,21 @@
-name: Run Bot
+name: Discord Bot
 
 on:
-  push:
-    branches: [ main ]
+  workflow_dispatch:
   schedule:
-    - cron: '*/10 * * * *'  # her 10 dakikada bir çalıştır
+    - cron: "0 */5 * * *"   # her 5 saatte bir çalıştır (6 saatten kısa olmalı)
 
 jobs:
-  build:
+  run:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Run Bot
-      env:
-        TOKEN: ${{ secrets.TOKEN }}
-      run: python bot.py
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run bot
+        run: |
+          python bot.py
